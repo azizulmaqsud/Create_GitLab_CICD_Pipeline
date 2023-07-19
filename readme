@@ -1,0 +1,49 @@
+# Create GitLab CICD Pipeline
+## Why GitLab?
+- GitLab CI builds and tests the software automatically whenever developer pushes code to application
+- GitLab CD places the changes of each code in the production in day2day deployment of the production
+
+## GitLab Architecture
+- Gitlab instance or Gitlab server hosts application code and pipelines altogether
+- GitLab Runners: Gitlab instance may have multiple Gitlab runners connected to the Gitlab server machine. Runners are executing the pipelines
+
+## Pipeline Configuration .gitlab-ci.yml
+- Configuration as a Code (CaaC) or Pipeline as Code (PaaC), the total pipeline is written in the code and hosted in the git repository as a YAML file
+- using .gitlab-ci.yml, Gitlab detect the pipeline code and execute it immediately
+- YAML file is created at root of the project repository. All the pipeline configuration is written inside
+- Write YAML file once in the Gitlab UI then NO need to go back and forth for editing your Gitlab 
+
+## Jobs
+- Tasks in CICD pipeline as running tests, building an image, deploying to server are configured as GitLab 'jobs’
+- Each job has a name and inside the job, there are couple of parameters or a couple of attributes or things that requires to configure for the job
+- First or required attribute of a job is called script. Following the script, commands are executed for the jobs
+
+## Let's Start a LAB ! Pre-requisite:
+• CREATE ACCOUNT - https://gitlab.com/
+• CREATE ORG/REPO – DevOps or any name
+• CREATE PROJECT REPO - GitlabCICD or any name
+
+## Runner Setup in Shell [Here I am using AWS EC2 UBUNTU, Debian commands bellow]
+- sudo su
+- sudo apt-get update -y
+- exec commands:
+• curl -L https://packages.gitlab.com/install/repositories/runner/gitlab-runner/script.deb.sh > script.deb.sh
+• sudo bash script.deb.sh
+• sudo apt install gitlab-runner
+• systemctl status gitlab-runner
+- For REGISTRATION_TOKEN go to Project settings -> CICD -> Runners -> Copy the token and paste the command
+• sudo gitlab-runner register --url https://gitlab.com/ --registration-token $REGISTRATION_TOKEN
+
+- GitLab Runner becomes Active with EC2 IPv4 IP address here
+- Push a dummy change to the Repo and go to https://gitlab.com/yourRepo. Refresh it.
+
+## GitLab Executors
+- GitLab Runner implements a number of executors that can be used to run your builds in different scenario. Types of Runners are:
+- Shell
+- Docker
+- Kubernetes
+
+## Create .gitlab-ci.yml file, Steps:
+- On the left side pane of Gitlab UI, select Repository > Files > select branch to commit. If you are not sure then just leave it as master or main
+- Then select the plus icon () and New file
+- create Filename .gitlab-ci.yml > in the larger window, paste sample code (code I shared in snapshot)
