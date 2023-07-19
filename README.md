@@ -38,7 +38,7 @@
 - Push a dummy change to the Repo and go to https://gitlab.com/yourRepo. Refresh it.
 
 ## GitLab Executors
-- GitLab Runner implements a number of executors that can be used to run your builds in a different scenario. Types of Runners are:
+GitLab Runner implements a number of executors that can be used to run your builds in a different scenario. Types of Runners are:
 - Shell
 - Docker
 - Kubernetes
